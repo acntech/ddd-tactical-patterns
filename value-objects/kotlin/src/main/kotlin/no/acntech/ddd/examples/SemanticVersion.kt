@@ -8,13 +8,13 @@ import no.acntech.ddd.utils.lang.RegexValidator
  * Value object representing a file name for a file to be added or mapped into a container.
  */
 @JvmInline
-value class SemanticVersion(val value: String) : SimpleValueObject<String> {
+value class SemanticVersion(private val value: String) : SimpleValueObject<String> {
 
    companion object {
 
       // REGEXP: Matches semantic versions with major, minor, and patch numbers followed by optional pre-release identifiers
       // and build metadata. A version looks like this: [major].[minor].[patch]-[pre-release]+[build]
-      private val REGEXP: Regex = "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*)?(\\+[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*)?$".toRegex()
+      private val REGEXP: Regex = "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-[a-zA-Z0-9]+(\\.[a-zA-Z0-9.-]*[a-zA-Z0-9])*)?(\\+[a-zA-Z0-9]+(\\.[a-zA-Z0-9.-]*[a-zA-Z0-9])*)?\$".toRegex()
 
       private val VALIDATOR = StringValueObjectValidator(
          minLength = 1,

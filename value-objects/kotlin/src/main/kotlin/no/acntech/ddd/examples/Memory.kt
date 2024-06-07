@@ -9,7 +9,7 @@ import java.math.BigInteger
  * Value object representing kubernetes/docker memory.
  */
 @JvmInline
-value class Memory(val bytes: BigInteger) : SimpleValueObject<BigInteger> {
+value class Memory(private val bytes: BigInteger) : SimpleValueObject<BigInteger> {
 
    companion object {
 

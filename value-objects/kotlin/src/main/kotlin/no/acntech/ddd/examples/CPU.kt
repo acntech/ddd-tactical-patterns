@@ -9,7 +9,7 @@ import no.acntech.ddd.model.ValidationRange
  * Value object representing a kubernetes/docker cpu request or limit.
  */
 @JvmInline
-value class CPU(val value: Double) : SimpleValueObject<Double> {
+value class CPU(private val value: Double) : SimpleValueObject<Double> {
 
    companion object {
 
