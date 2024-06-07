@@ -2,7 +2,7 @@ package no.acntech.ddd.examples
 
 import no.acntech.ddd.model.SimpleValueObject
 import no.acntech.ddd.model.StringValueObjectValidator
-import no.acntech.ddd.utils.lang.RegexValidator
+import no.acntech.ddd.utils.text.RegexValidator
 
 /**
  * Value object representing a file name for a file to be added or mapped into a container.

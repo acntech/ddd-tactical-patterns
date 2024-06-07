@@ -1,4 +1,7 @@
-package no.acntech.ddd.utils.lang
+package no.acntech.ddd.utils.text
+
+import no.acntech.ddd.utils.lang.ValidationException
+import no.acntech.ddd.utils.lang.Validator
 
 /**
  * A validator that uses regular expressions to validate strings.
