@@ -19,74 +19,75 @@ import no.acntech.ddd.utils.text.StringUtils;
  */
 public class StringValueObject extends SimpleValueObject<String> {
 
-  protected StringValueObject(String value) {
-    super(value);
-  }
+    protected StringValueObject(String value) {
+        super(value);
+    }
 
-  protected final void validate(String value) {
-    validateLength(value);
-    validateLexicalContent(value);
-    validateSyntax(value);
-    validateSemantics(value);
-  }
+    protected final void validate(String value) {
+        validateLength(value);
+        validateLexicalContent(value);
+        validateSyntax(value);
+        validateSemantics(value);
+    }
 
-  /**
-   * Returns the required minimum length of the (internal) String. The default implementation returns 0.
-   *
-   * @return the required minimum length of the (internal) String.
-   */
-  public int getMinLength() {
-    return 0;
-  }
+    /**
+     * Returns the required minimum length of the (internal) String. The default implementation returns 0.
+     *
+     * @return the required minimum length of the (internal) String.
+     */
+    public int getMinLength() {
+        return 0;
+    }
 
-  /**
-   * Returns the required maximum length of the (internal) String. The default implementation returns {@link Integer#MAX_VALUE}.
-   *
-   * @return the required maximum length of the (internal) String.
-   */
-  public int getMaxLength() {
-    return Integer.MAX_VALUE;
-  }
+    /**
+     * Returns the required maximum length of the (internal) String. The default implementation returns
+     * {@link Integer#MAX_VALUE}.
+     *
+     * @return the required maximum length of the (internal) String.
+     */
+    public int getMaxLength() {
+        return Integer.MAX_VALUE;
+    }
 
-  /**
-   * Validates the lexical content of a string value.
-   *
-   * @param value the string value to be validated
-   */
-  protected void validateLexicalContent(String value) {
-    // do nothing
-  }
+    /**
+     * Validates the lexical content of a string value.
+     *
+     * @param value the string value to be validated
+     */
+    protected void validateLexicalContent(String value) {
+        // do nothing
+    }
 
-  /**
-   * Validates the syntax of a string value.
-   *
-   * @param value the string value to be validated
-   */
-  protected void validateSyntax(String value) {
-    // do nothing
-  }
+    /**
+     * Validates the syntax of a string value.
+     *
+     * @param value the string value to be validated
+     */
+    protected void validateSyntax(String value) {
+        // do nothing
+    }
 
-  /**
-   * Validates the semantics of a string value.
-   *
-   * @param value the string value to be validated
-   */
-  protected void validateSemantics(String value) {
-    // do nothing
-  }
+    /**
+     * Validates the semantics of a string value.
+     *
+     * @param value the string value to be validated
+     */
+    protected void validateSemantics(String value) {
+        // do nothing
+    }
 
-  private void validateLength(String value) {
-    int length = value.length();
+    private void validateLength(String value) {
+        int length = value.length();
 
-    inclusiveBetween(
-        getMinLength(),
-        getMaxLength(),
-        length,
-        "Length of [%s] must be between [%s] and [%s], but was [%s]",
-        StringUtils.truncate(value, 32, false, true),
-        getMinLength(),
-        getMaxLength(),
-        length);
-  }
+        inclusiveBetween(
+            getMinLength(),
+            getMaxLength(),
+            length,
+            "Length of [%s] must be between [%s] and [%s], but was [%s]",
+            StringUtils.truncate(value, 32, false, true),
+            getMinLength(),
+            getMaxLength(),
+            length);
+    }
 
 }

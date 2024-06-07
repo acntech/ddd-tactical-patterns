@@ -18,10 +18,10 @@ import lombok.NonNull;
 public interface PrimitiveValueObject<P extends Comparable<P>>
     extends ValueObject, Comparable<PrimitiveValueObject<P>> {
 
-  P toPrimitive();
+    P toPrimitive();
 
-  default int compareTo(@NonNull PrimitiveValueObject<P> p) {
-    return toPrimitive().compareTo(p.toPrimitive());
-  }
+    default int compareTo(@NonNull PrimitiveValueObject<P> p) {
+        return toPrimitive().compareTo(p.toPrimitive());
+    }
 
 }
