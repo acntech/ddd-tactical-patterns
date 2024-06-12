@@ -1,7 +1,7 @@
 package no.acntech.ddd.examples
 
 import no.acntech.ddd.model.SimpleValueObject
-import no.acntech.ddd.model.StringValueObjectValidator
+import no.acntech.ddd.utils.text.StringValidator
 import no.acntech.ddd.utils.text.RegexValidator
 
 /**
@@ -17,7 +17,7 @@ value class SemanticVersion(private val value: String) : SimpleValueObject<Strin
       private val REGEXP: Regex =
          "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-[a-zA-Z0-9]+(\\.[a-zA-Z0-9.-]*[a-zA-Z0-9])*)?(\\+[a-zA-Z0-9]+(\\.[a-zA-Z0-9.-]*[a-zA-Z0-9])*)?\$".toRegex()
 
-      private val VALIDATOR = StringValueObjectValidator(
+      private val VALIDATOR = StringValidator(
          minLength = 1,
          maxLength = 127,
          lexicalValidator = RegexValidator(REGEXP)
@@ -29,7 +29,7 @@ value class SemanticVersion(private val value: String) : SimpleValueObject<Strin
    }
 
    init {
-      VALIDATOR.validate(this)
+      VALIDATOR.validate(this.unwrap())
    }
 
    override fun unwrap(): String {

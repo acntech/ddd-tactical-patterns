@@ -28,29 +28,28 @@ data class RangeValidator<P : Comparable<P>>(
 
    override fun validate(t: P) {
       inclusiveMin?.let { min ->
-         if(t < min) {
+         if (t < min) {
             throw ValidationException("Value '$t' is below the allowed minimum '$min'")
          }
       }
 
       exclusiveMin?.let { min ->
-         if(t <= min) {
+         if (t <= min) {
             throw ValidationException("Value '$t' is below the allowed minimum '$min'")
          }
       }
 
       inclusiveMax?.let { max ->
-         if(t > max) {
+         if (t > max) {
             throw ValidationException("Value '$t' is above the allowed maximum '$max'")
          }
       }
 
       exclusiveMax?.let { max ->
-         if(t >= max) {
+         if (t >= max) {
             throw ValidationException("Value '$t' is above the allowed maximum '$max'")
          }
       }
    }
-
 
 }

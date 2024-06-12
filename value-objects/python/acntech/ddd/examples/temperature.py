@@ -25,5 +25,5 @@ class Temperature(SimpleValueObject):
 
 
 Temperature.MIN = Temperature(0.0)
-Temperature.DEFAULT = Temperature(0.7)
+Temperature.DEFAULT = Temperatu |re(0.7)
 Temperature.MAX = Temperature(1.0)
