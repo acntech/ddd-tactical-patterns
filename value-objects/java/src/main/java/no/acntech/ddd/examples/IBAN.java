@@ -3,6 +3,7 @@ package no.acntech.ddd.examples;
 import static org.apache.commons.lang3.Validate.isTrue;
 
 import no.acntech.ddd.model.StringValueObject;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.validator.routines.IBANValidator;
 
 public final class IBAN extends StringValueObject {
@@ -27,6 +28,11 @@ public final class IBAN extends StringValueObject {
     @Override
     public int getMaxLength() {
         return MAX_LENGTH;
+    }
+
+    @Override
+    protected void validateLexicalContent(String val) {
+        isTrue(StringUtils.isNumeric(val), "IBAN must be numeric [%s]", val);
     }
 
     @Override
