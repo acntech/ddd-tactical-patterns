@@ -6,7 +6,7 @@ from acntech.ddd.model.validation_range import ValidationRange
 class Temperature(SimpleValueObject):
     MIN_VALUE: float = 0.0
     MAX_VALUE: float = 1.0
-    NORMAL = None
+    DEFAULT = None
     MIN = None
     MAX = None
     _validator = SimpleValueObjectValidator(ValidationRange(inclusive_min=MIN_VALUE, inclusive_max=MAX_VALUE))
@@ -25,5 +25,5 @@ class Temperature(SimpleValueObject):
 
 
 Temperature.MIN = Temperature(0.0)
-Temperature.NORMAL = Temperature(0.7)
+Temperature.DEFAULT = Temperature(0.7)
 Temperature.MAX = Temperature(1.0)
