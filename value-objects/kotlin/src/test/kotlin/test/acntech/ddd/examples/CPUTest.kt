@@ -1,7 +1,6 @@
 package test.acntech.ddd.examples
 
 import no.acntech.ddd.examples.CPU
-import no.acntech.ddd.utils.lang.ValidationException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test

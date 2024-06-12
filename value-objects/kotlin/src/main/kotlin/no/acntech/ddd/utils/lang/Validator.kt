@@ -1,7 +1,5 @@
 package no.acntech.ddd.utils.lang
 
-import no.acntech.ddd.utils.lang.ValidationException
-
 /**
  *  Interface for validating objects.
  */

@@ -32,7 +32,7 @@ internal class MemoryTest {
    @Test
    fun `test invalid memory format exception`() {
       val invalidTestString = "20Mib"
-      assertThrows(IllegalArgumentException::class.java){ Memory.of(invalidTestString)}
+      assertThrows(IllegalArgumentException::class.java) { Memory.of(invalidTestString) }
    }
 
    @Test

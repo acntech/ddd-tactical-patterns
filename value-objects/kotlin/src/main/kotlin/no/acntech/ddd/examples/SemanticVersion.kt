@@ -14,7 +14,8 @@ value class SemanticVersion(private val value: String) : SimpleValueObject<Strin
 
       // REGEXP: Matches semantic versions with major, minor, and patch numbers followed by optional pre-release identifiers
       // and build metadata. A version looks like this: [major].[minor].[patch]-[pre-release]+[build]
-      private val REGEXP: Regex = "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-[a-zA-Z0-9]+(\\.[a-zA-Z0-9.-]*[a-zA-Z0-9])*)?(\\+[a-zA-Z0-9]+(\\.[a-zA-Z0-9.-]*[a-zA-Z0-9])*)?\$".toRegex()
+      private val REGEXP: Regex =
+         "^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-[a-zA-Z0-9]+(\\.[a-zA-Z0-9.-]*[a-zA-Z0-9])*)?(\\+[a-zA-Z0-9]+(\\.[a-zA-Z0-9.-]*[a-zA-Z0-9])*)?\$".toRegex()
 
       private val VALIDATOR = StringValueObjectValidator(
          minLength = 1,
@@ -33,6 +34,26 @@ value class SemanticVersion(private val value: String) : SimpleValueObject<Strin
 
    override fun unwrap(): String {
       return value
+   }
+
+   fun getMajor(): Int {
+      return value.split(".")[0].toInt()
+   }
+
+   fun getMinor(): Int {
+      return value.split(".")[1].toInt()
+   }
+
+   fun getPatch(): Int {
+      return value.split(".")[2].toInt()
+   }
+
+   fun getPreRelease(): String? {
+      return value.split("-").getOrNull(1)
+   }
+
+   fun getBuildMetadata(): String? {
+      return value.split("+").getOrNull(1)
    }
 
    override fun toString(): String {

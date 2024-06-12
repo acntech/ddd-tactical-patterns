@@ -1,8 +1,7 @@
 package no.acntech.ddd.examples
 
 import no.acntech.ddd.model.SimpleValueObject
-import no.acntech.ddd.model.SimpleValueObjectValidator
-import no.acntech.ddd.model.ValidationRange
+import no.acntech.ddd.utils.lang.RangeValidator
 import java.math.BigInteger
 
 /**
@@ -48,16 +47,14 @@ value class Memory(private val bytes: BigInteger) : SimpleValueObject<BigInteger
 
       fun of(value: BigInteger): Memory = Memory(value)
 
-      private val VALIDATOR = SimpleValueObjectValidator(
-         range = ValidationRange(
-            exclusiveMin = BigInteger.ZERO,
-            exclusiveMax = BigInteger("9223372036854775807") // 2^63 - 1
-         )
+      private val VALIDATOR = RangeValidator(
+         exclusiveMin = BigInteger.ZERO,
+         exclusiveMax = BigInteger("9223372036854775807") // 2^63 - 1
       )
    }
 
    init {
-      VALIDATOR.validate(this)
+      VALIDATOR.validate(this.unwrap())
    }
 
    override fun unwrap(): BigInteger {

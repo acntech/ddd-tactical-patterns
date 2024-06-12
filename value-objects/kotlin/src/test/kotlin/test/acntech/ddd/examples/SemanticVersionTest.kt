@@ -1,6 +1,7 @@
 package test.acntech.ddd.examples
 
 import no.acntech.ddd.examples.SemanticVersion
+import no.acntech.ddd.utils.lang.ValidationException
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
@@ -18,7 +19,7 @@ internal class SemanticVersionTest {
    @Test
    fun `test invalid Semantic version exception`() {
       val invalidTestString = "1.0.0-alpha+001-"
-      assertThrows(IllegalArgumentException::class.java) { SemanticVersion.of(invalidTestString) }
+      assertThrows(ValidationException::class.java) { SemanticVersion.of(invalidTestString) }
    }
 
    @Test
@@ -27,7 +28,7 @@ internal class SemanticVersionTest {
          "1.0.1" +
             "-alpha.alpha.alpha.alpha.alpha.alpha.alpha.alpha.alpha.alpha.alpha" +
             "+build.build.build.build.build.build.build.build.build.build.build"
-      assertThrows(IllegalArgumentException::class.java) { SemanticVersion.of(invalidTestString) }
+      assertThrows(ValidationException::class.java) { SemanticVersion.of(invalidTestString) }
    }
 
    @Test

@@ -1,7 +1,7 @@
 package no.acntech.ddd.model
 
 /**
- * A DDD ValueObject holding a single value. The unwrap method can e.g. assist in mapping the
+ * A DDD ValueObject holding a single (primitive) value. The unwrap method can e.g. assist in mapping the
  * SimpleValueObject to a DTO or to a repository object.
  *
  * The SimpleValueObject would normally restrict the underlying value using domain specific rules - e.g. applying

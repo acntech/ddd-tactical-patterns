@@ -1,8 +1,7 @@
 package no.acntech.ddd.examples
 
 import no.acntech.ddd.model.SimpleValueObject
-import no.acntech.ddd.model.SimpleValueObjectValidator
-import no.acntech.ddd.model.ValidationRange
+import no.acntech.ddd.utils.lang.RangeValidator
 
 
 /**
@@ -15,12 +14,11 @@ value class CPU(private val value: Double) : SimpleValueObject<Double> {
 
       const val MILLI_CPU_SUFFIX = "m"
 
-      private val VALIDATOR = SimpleValueObjectValidator(
-         range = ValidationRange(
-            inclusiveMin = 0.001,
-            exclusiveMax = 64.0
-         )
+      private val VALIDATOR = RangeValidator(
+         inclusiveMin = 0.001,
+         exclusiveMax = 64.0
       )
+
 
       fun of(value: String): CPU {
          val numericValue = if (value.endsWith(MILLI_CPU_SUFFIX)) {
@@ -38,7 +36,7 @@ value class CPU(private val value: Double) : SimpleValueObject<Double> {
    }
 
    init {
-      VALIDATOR.validate(this)
+      VALIDATOR.validate(this.unwrap())
    }
 
    override fun unwrap(): Double {
