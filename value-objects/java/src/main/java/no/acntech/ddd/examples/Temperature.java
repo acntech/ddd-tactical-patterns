@@ -3,6 +3,9 @@ package no.acntech.ddd.examples;
 import lombok.NonNull;
 import no.acntech.ddd.model.SimpleValueObject;
 
+/**
+ * Value object representing an LLM <i>temperature</i> - see https://www.iguazio.com/glossary/llm-temperature/
+ */
 public class Temperature extends SimpleValueObject<Float> {
 
     public static final float MIN_VALUE = 0.0f;

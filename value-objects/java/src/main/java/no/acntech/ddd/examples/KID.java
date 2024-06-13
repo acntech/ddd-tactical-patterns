@@ -5,6 +5,9 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import no.acntech.ddd.model.StringValueObject;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Value object representing a Norwegian <i>KID</i> - see https://no.wikipedia.org/wiki/KID-nummer.
+ */
 public final class KID extends StringValueObject {
 
     public static final int MIN_LENGTH = 2;

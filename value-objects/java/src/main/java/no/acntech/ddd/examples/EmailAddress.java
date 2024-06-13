@@ -5,6 +5,9 @@ import no.acntech.ddd.model.StringValueObject;
 import no.acntech.ddd.utils.lang.RegexValidator;
 import no.acntech.ddd.utils.lang.Validator;
 
+/**
+ * Value object representing an email address.
+ */
 public final class EmailAddress extends StringValueObject {
 
     public static final int MIN_LENGTH = 3;

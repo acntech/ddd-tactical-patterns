@@ -7,6 +7,9 @@ import lombok.NonNull;
 import no.acntech.ddd.model.StringValueObject;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Value object representing a Norwegian <i>organization number</i> - see https://no.wikipedia.org/wiki/Organisasjonsnummer.
+ */
 public final class NorwegianOrganizationNumber extends StringValueObject {
 
     public static final int FIXED_LENGTH = 9;

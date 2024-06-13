@@ -5,6 +5,10 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import no.acntech.ddd.model.StringValueObject;
 import org.apache.commons.validator.routines.IBANValidator;
 
+/**
+ * Value object representing an International Bank Account Number (IBAN) -
+ * see https://en.wikipedia.org/wiki/International_Bank_Account_Number.
+ */
 public final class IBAN extends StringValueObject {
 
     public static final int MIN_LENGTH = 5;
