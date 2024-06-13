@@ -11,7 +11,6 @@ public final class NorwegianOrganizationNumber extends StringValueObject {
 
     public static final int FIXED_LENGTH = 9;
 
-    // Weights according to the Norwegian org. numbers system
     private static final int[] WEIGHTS = new int[]{3, 2, 7, 6, 5, 4, 3, 2};
 
     public static NorwegianOrganizationNumber of(String value) {
@@ -49,7 +48,7 @@ public final class NorwegianOrganizationNumber extends StringValueObject {
         int remainder = Integer.remainderUnsigned(sum, 11);
         int control = (remainder == 0 ? 0 : 11 - remainder);
 
-        return control == Character.getNumericValue(number.charAt(NorwegianOrganizationNumber.FIXED_LENGTH - 1));
+        return control == Character.getNumericValue(number.charAt(FIXED_LENGTH - 1));
     }
 
 }
