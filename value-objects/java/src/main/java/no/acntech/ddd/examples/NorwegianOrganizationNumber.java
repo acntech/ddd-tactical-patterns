@@ -42,8 +42,8 @@ public final class NorwegianOrganizationNumber extends StringValueObject {
     }
 
     private static boolean validateChecksum(@NonNull String number) {
-        int sum = IntStream.range(0, NorwegianOrganizationNumber.WEIGHTS.length)
-            .map(i -> NorwegianOrganizationNumber.WEIGHTS[i] * Character.getNumericValue(number.charAt(i)))
+        int sum = IntStream.range(0, WEIGHTS.length)
+            .map(i -> WEIGHTS[i] * Character.getNumericValue(number.charAt(i)))
             .sum();
         int remainder = Integer.remainderUnsigned(sum, 11);
         int control = (remainder == 0 ? 0 : 11 - remainder);
