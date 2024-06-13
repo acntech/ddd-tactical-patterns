@@ -6,7 +6,7 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import no.acntech.ddd.model.StringValueObject;
 
 /**
- * Value object representing a Norwegian post(al) code which is a 4 digit number.
+ * Value object representing a Norwegian post(al) box which is a number between 1 and 16 digits that may start with leading zeros.
  */
 public final class PostOfficeBox extends StringValueObject {
 

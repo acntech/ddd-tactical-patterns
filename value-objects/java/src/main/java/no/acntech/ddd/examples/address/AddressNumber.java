@@ -6,7 +6,8 @@ import no.acntech.ddd.utils.lang.RegexValidator;
 import no.acntech.ddd.utils.lang.Validator;
 
 /**
- * Value object representing a Norwegian post(al) code area which consists of letters and spaces.
+ * Value object representing an <i>address number</i> - e.g. "12B" in "Øvre Bogenvei 12B".
+ * AddressNumber is part of a {@link StreetAddress}.
  */
 public final class AddressNumber extends StringValueObject {
 
@@ -15,7 +16,8 @@ public final class AddressNumber extends StringValueObject {
     public static final int MAX_LENGTH = 8;
 
     //
-    private static final String REGEX = "^\\d+[a-zA-Z]?$";;
+    private static final String REGEX = "^\\d+[a-zA-Z]?$";
+    ;
 
     private static final Validator<String> VALIDATOR = RegexValidator.of(REGEX);
 

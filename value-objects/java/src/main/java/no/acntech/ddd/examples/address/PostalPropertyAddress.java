@@ -8,8 +8,8 @@ import lombok.ToString;
 import no.acntech.ddd.model.ValueObject;
 
 /**
- * Base Value object representing a Norwegian postal address - see https://no.wikipedia.org/wiki/Adresse_(geografisk). Subclasses
- * are PropertyAddress and PostalBoxAddress.
+ * Base Value object representing a Norwegian <i>postal property address</i> -
+ * see https://no.wikipedia.org/wiki/Adresse_(geografisk).
  */
 @Getter
 @EqualsAndHashCode(callSuper = true)
@@ -27,5 +27,9 @@ public final class PostalPropertyAddress extends PostalAddress {
         super(addressee, postCode, postCodeArea);
         this.streetAddress = streetAddress;
     }
+    public String toSecondLine() {
+        return streetAddress.toLine();
+    }
+
 
 }

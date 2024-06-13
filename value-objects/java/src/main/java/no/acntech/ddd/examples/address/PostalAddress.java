@@ -1,5 +1,7 @@
 package no.acntech.ddd.examples.address;
 
+import static no.acntech.ddd.utils.text.StringLiterals.SPACE;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.ToString;
@@ -11,7 +13,7 @@ import no.acntech.ddd.model.ValueObject;
  */
 @Getter
 @ToString
-public class PostalAddress implements ValueObject {
+public abstract class PostalAddress implements ValueObject {
 
     private final Addressee addressee;
 
@@ -27,6 +29,16 @@ public class PostalAddress implements ValueObject {
         this.addressee = addressee;
         this.postCode = postCode;
         this.postCodeArea = postCodeArea;
+    }
+
+    public String toFirstLine() {
+        return addressee.toPrimitive();
+    }
+
+    public abstract String toSecondLine();
+
+    public String toThirdLine() {
+        return postCode.toPrimitive() + SPACE + postCodeArea.toPrimitive();
     }
 
 }

@@ -15,9 +15,9 @@ public final class AddressName extends StringValueObject {
     public static final int MAX_LENGTH = 64;
 
     //
-    private static final String ADDRESS_NAME_REGEX = "^[a-zA-ZæøåÆØÅäöüÄÖÜ ]+$";;
+    private static final String REGEX = "^[a-zA-ZæøåÆØÅäöüÄÖÜ ]+$";;
 
-    private static final Validator<String> VALIDATOR = RegexValidator.of(ADDRESS_NAME_REGEX);
+    private static final Validator<String> VALIDATOR = RegexValidator.of(REGEX);
 
 
     public static AddressName of(String value) {
