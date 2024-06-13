@@ -2,8 +2,13 @@ package no.acntech.ddd.utils.lang;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
+import no.acntech.ddd.utils.text.StringUtils;
 
 public class RegexValidator implements Validator<String> {
+
+    public static RegexValidator of(String pattern) {
+        return new RegexValidator(pattern);
+    }
 
     private final Pattern pattern;
 
@@ -18,7 +23,9 @@ public class RegexValidator implements Validator<String> {
     @Override
     public void validate(String t) {
         if (!pattern.matcher(t).matches()) {
-            throw new ValidationException("String '" + t + "' does not match the required regex pattern: " + pattern);
+            throw new ValidationException("String '" +
+                StringUtils.truncate(t, 16, false, true) +
+                "' does not match the required regex pattern: " + pattern);
         }
     }
 

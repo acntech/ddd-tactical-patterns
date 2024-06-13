@@ -7,6 +7,10 @@ public final class StringUtils {
 
     private static final String ELLIPSIS = "...";
 
+    public static String truncate(String text, int length) {
+        return truncate(text, length, false, false);
+    }
+
     public static String truncate(String text, int length, boolean sliceFromStart, boolean ellipsis) {
         String placeholder = "";
         int placeLength = 0;
