@@ -1,6 +1,7 @@
 package no.acntech.ddd.examples.address;
 
 import static no.acntech.ddd.utils.text.StringLiterals.SPACE;
+import static org.apache.commons.lang3.Validate.isTrue;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -39,6 +40,7 @@ public final class StreetAddress implements ValueObject {
         AddressAdditionalName additionalName,
         PropertyUnitNumber propertyUnitNumber
     ) {
+        isTrue(name != null || additionalName != null, "Either name or additional name must be present");
         this.name = name;
         this.number = number;
         this.additionalName = additionalName;

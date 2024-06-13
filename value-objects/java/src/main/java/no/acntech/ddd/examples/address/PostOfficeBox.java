@@ -33,7 +33,7 @@ public final class PostOfficeBox extends StringValueObject {
     }
 
     @Override
-    public void validateSyntax(String value) {
+    protected void validateLexicalContent(String value) {
         isTrue(isNumeric(value), "Postal code must be numeric [%s]", value);
     }
 
