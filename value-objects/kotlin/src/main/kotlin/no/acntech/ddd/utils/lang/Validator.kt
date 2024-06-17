@@ -1,7 +1,7 @@
 package no.acntech.ddd.utils.lang
 
 /**
- *  Interface for validating objects.
+ *  Interface for validating objects of a certain type.
  */
 interface Validator<T> {
 

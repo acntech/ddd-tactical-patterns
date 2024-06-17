@@ -1,8 +1,9 @@
-package no.acntech.ddd.utils.lang;
+package no.acntech.ddd.utils.text;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
-import no.acntech.ddd.utils.text.StringUtils;
+import no.acntech.ddd.utils.lang.ValidationException;
+import no.acntech.ddd.utils.lang.Validator;
 
 public class RegexValidator implements Validator<String> {
 

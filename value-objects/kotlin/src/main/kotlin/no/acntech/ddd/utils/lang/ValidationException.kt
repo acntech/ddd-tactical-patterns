@@ -1,11 +1,7 @@
 package no.acntech.ddd.utils.lang
 
 /**
- * Exception that is thrown when a validation error occurs.
- *
- * @constructor Creates a new ValidationException.
- * @param message The detail message.
- * @param cause The cause of the exception.
+ * Exception thrown when a validation error occurs.
  */
 class ValidationException : RuntimeException {
 

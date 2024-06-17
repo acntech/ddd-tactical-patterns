@@ -1,13 +1,15 @@
 package no.acntech.ddd.model;
 
-import static org.apache.commons.lang3.Validate.isTrue;
-
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import no.acntech.ddd.utils.lang.RangeValidator;
+import no.acntech.ddd.utils.lang.ValidationException;
 
 /**
- * Simple implementation of a PrimitiveValueObject - range validation is performed via min/max comparable exploitation.
+ * Simple implementation of a PrimitiveValueObject. This class is intended to be subclassed by value objects that wrap a single,
+ * primitive value. The primitive value is validated by first checking the range extremes (if any) and then calling the possibly
+ * overridden {@link #validate} method.
  */
 @EqualsAndHashCode
 public class SimpleValueObject<P extends Comparable<P>> implements PrimitiveValueObject<P> {
@@ -17,17 +19,19 @@ public class SimpleValueObject<P extends Comparable<P>> implements PrimitiveValu
     /**
      * Protected constructor - subclasses <i>must</i> call this in order for the framework to work. The primitive value is
      * validated by first checking the range extremes (if any) and then calling the possibly overridden {@link #validate} method.
+     * @param primitive the primitive value.
+     * @throws ValidationException if the primitive is not within range or is otherwise invalid according to business rules.
      */
     protected SimpleValueObject(@NonNull P primitive) {
-        validateRange(primitive);
-        validate(primitive);
+        validateRange(primitive); // range validation
+        validate(primitive); // possibly overridden
         this.primitive = primitive;
     }
 
     /**
      * Validates the primitive value given in the constructor - throws a (subclass of) {@link RuntimeException} (possibly an
-     * {@link IllegalArgumentException} if the primitive is invalid. The default implementation does nothing. Note that range
-     * validation is performed by the constructor prior to calling this method.
+     * {@link IllegalArgumentException} or {@link ValidationException} if the primitive is invalid. The default implementation
+     * does nothing. Note that range validation is performed by the constructor prior to calling this method.
      *
      * @param primitive the primitive value.
      */
@@ -82,35 +86,7 @@ public class SimpleValueObject<P extends Comparable<P>> implements PrimitiveValu
     }
 
     private void validateRange(P value) {
-        if (getInclusiveMin() != null && getExclusiveMin() != null) {
-            throw new IllegalStateException(String.format(
-                "Cannot have both inclusive [%s] and exclusive minimum [%s] values",
-                getInclusiveMin(),
-                getExclusiveMin()
-            ));
-        }
-
-        if (getInclusiveMax() != null && getExclusiveMax() != null) {
-            throw new IllegalStateException(String.format(
-                "Cannot have both inclusive [%s] and exclusive maximum [%s] values",
-                getInclusiveMax(),
-                getExclusiveMax()
-            ));
-        }
-
-        P extreme;
-
-        isTrue((extreme = getInclusiveMin()) == null || value.compareTo(extreme) >= 0,
-            "Value must be greater than or equal to [%s], but was [%s]", extreme, value);
-
-        isTrue((extreme = getInclusiveMax()) == null || value.compareTo(extreme) <= 0,
-            "Value must be less than or equal to [%s], but was [%s]", extreme, value);
-
-        isTrue((extreme = getExclusiveMin()) == null || value.compareTo(extreme) > 0,
-            "Value must be greater than [%s], but was [%s]", extreme, value);
-
-        isTrue((extreme = getExclusiveMax()) == null || value.compareTo(extreme) < 0,
-            "Value must be less than [%s], but was [%s]", extreme, value);
+        new RangeValidator<>(getInclusiveMin(), getExclusiveMin(), getInclusiveMax(), getExclusiveMax()).validate(value);
     }
 
 }

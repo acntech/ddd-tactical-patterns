@@ -2,7 +2,7 @@ package no.acntech.ddd.examples.address;
 
 import lombok.NonNull;
 import no.acntech.ddd.model.StringValueObject;
-import no.acntech.ddd.utils.lang.RegexValidator;
+import no.acntech.ddd.utils.text.RegexValidator;
 import no.acntech.ddd.utils.lang.Validator;
 
 /**
